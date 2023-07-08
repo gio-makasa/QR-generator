@@ -1,14 +1,23 @@
 <template>
   <div class="container">
-    <input type="text" />
-    <input
-      type="file"
-      id="background"
-      accept="image/png, image/jpeg"
-    />
-    <button>GENERATE</button>
+    <input type="text" placeholder="http:// ..." ref="url" />
+    <input type="file" id="background" accept="image/png, image/jpeg" />
+    <button @click="submit()">GENERATE</button>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { ref, defineEmits } from "vue";
+
+const url = ref();
+const emit = defineEmits<{
+  getURL: [value: string]
+}>()
+
+function submit() {
+  emit("getURL", url.value.value);
+}
+</script>
 
 <style lang="scss" scoped>
 .container {
