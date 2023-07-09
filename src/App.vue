@@ -1,15 +1,11 @@
 <template>
   <h1>QR Code Generator</h1>
-  <InputContainer @getURL="getURL" />
+  <InputContainer @url="getData" />
   <div class="result">
-    <img
-      src="https://e0.pxfuel.com/wallpapers/933/367/desktop-wallpaper-anime-nature-green-anime-scenery.jpg"
-      alt="background"
-      id="background"
-    />
+    <img :src="image" alt="background" id="background" />
     <img
       :src="
-        'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + url
+        'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + qr
       "
       alt="image"
       id="qr"
@@ -21,10 +17,14 @@
 import { ref } from "vue";
 import InputContainer from "./components/InputContainer.vue";
 
-const url = ref("https://gio-makasa.github.io");
+const qr = ref("https://gio-makasa.github.io");
+const image = ref("./src/assets/back.jpg");
 
-function getURL(data: string) {
-  url.value = data;
+function getData(QRurl: string, IMGurl: string) {
+  if (QRurl != "") {
+    qr.value = QRurl;
+  }
+  image.value = IMGurl;
 }
 </script>
 

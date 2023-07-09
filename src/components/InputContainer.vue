@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <input type="text" placeholder="http:// ..." ref="url" />
-    <input type="file" id="background" accept="image/png, image/jpeg" />
+    <input type="text" placeholder="http:// ..." ref="QRurl" />
+    <input type="file" id="background" accept="image/*" ref="IMGurl" />
     <button @click="submit()">GENERATE</button>
   </div>
 </template>
@@ -9,13 +9,20 @@
 <script lang="ts" setup>
 import { ref, defineEmits } from "vue";
 
-const url = ref();
+const QRurl = ref();
+const IMGurl = ref();
 const emit = defineEmits<{
-  getURL: [value: string]
-}>()
+  url: [value: string];
+}>();
 
 function submit() {
-  emit("getURL", url.value.value);
+  emit(
+    "url",
+    QRurl.value.value,
+    IMGurl.value.files[0]
+      ? URL.createObjectURL(IMGurl.value.files[0])
+      : "./src/assets/back.jpg"
+  );
 }
 </script>
 
