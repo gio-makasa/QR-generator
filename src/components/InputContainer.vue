@@ -7,12 +7,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 
 const QRurl = ref();
 const IMGurl = ref();
 const emit = defineEmits<{
-  url: [value: string];
+  url: [QRurl: string, IMGurl: string];
 }>();
 
 function submit() {
@@ -34,6 +34,7 @@ function submit() {
   width: 40%;
   height: 20vh;
   padding: 1rem;
+  margin-bottom: 5vh;
   border-radius: 1rem;
   box-shadow: 0 0 10px white;
 
@@ -41,28 +42,6 @@ function submit() {
     border-radius: 5rem;
     padding: 0.5rem 1rem;
     font-size: large;
-  }
-
-  button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    color: white;
-    cursor: pointer;
-    transition: border-color 0.25s;
-
-    &:hover {
-      border-color: #646cff;
-    }
-
-    &:focus,
-    &:focus-visible {
-      outline: 4px auto -webkit-focus-ring-color;
-    }
   }
 }
 </style>
